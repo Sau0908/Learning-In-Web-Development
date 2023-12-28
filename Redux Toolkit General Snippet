@@ -1,0 +1,52 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+// Define initial state
+const initialState = {
+  // Define your initial state properties here
+};
+
+// Async Thunks
+export const myAsyncAction = createAsyncThunk(
+  'sliceName/myAsyncAction', // Action type identifier
+  async (payloadData, { rejectWithValue, /* other parameters */ }) => {
+    try {
+      // Async operation
+      const result = await asyncOperation(/* using payloadData */);
+
+      // Return data on success
+      return result;
+    } catch (error) {
+      // Handle errors and reject the promise with rejectWithValue
+      console.error(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+// Redux Slice
+const mySlice = createSlice({
+  name: 'sliceName', // Slice name
+  initialState,
+  reducers: {
+    // Define synchronous actions here if needed
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(myAsyncAction.pending, (state) => {
+        // Handle pending state
+      })
+      .addCase(myAsyncAction.fulfilled, (state, action) => {
+        // Handle fulfilled state
+        // Access action.payload for data returned by the async action
+      })
+      .addCase(myAsyncAction.rejected, (state, action) => {
+        // Handle rejected state
+        // Access action.payload for error data
+      });
+    // Add extraReducers for other async actions if needed
+  },
+});
+
+// Export actions and reducer
+export const { /* action creators */ } = mySlice.actions;
+export default mySlice.reducer;
