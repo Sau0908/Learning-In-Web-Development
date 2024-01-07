@@ -1,0 +1,10 @@
+
+(1)  answer- undefined
+ var x = 21; // Global variable x is declared and assigned the value 21
+
+var fun = function () {
+  console.log(x); // At this point, x is hoisted but not yet assigned a value, so it's undefined
+  var x = 20; // Variable x is declared and assigned the value 20 (only available from this point onwards within the function)
+};
+
+fun(); // Calling the function
