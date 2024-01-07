@@ -1,0 +1,26 @@
+// Function declaration
+hoistedFunction(); // Output: "Hello, I'm hoisted!"
+
+function hoistedFunction() {
+  console.log("Hello, I'm hoisted!");
+}
+
+// Function expression
+// This will throw an error because function expressions are not hoisted
+// unhoistedFunction(); // Error: unhoistedFunction is not a function
+
+const unhoistedFunction = function () {
+  console.log("This won't work due to hoisting!");
+};
+
+
+Hoisting can be beneficial, but it's important to understand how different types of declarations (such as function declarations and function expressions) are affected. Function declarations are hoisted entirely, allowing them to be used before their actual declaration in the code. However, function expressions behave differently and cannot be accessed before their assignment due to the way they're hoisted.
+
+Explanation:
+
+Function Declaration (hoistedFunction):
+
+Despite the function being called before its actual declaration, it works without throwing an error. This happens because function declarations are hoisted to the top of the scope during the compilation phase, allowing them to be called anywhere within that scope.
+Function Expression (unhoistedFunction):
+
+The function expression, which is stored in the variable unhoistedFunction, is not hoisted in the same way as function declarations. If you attempt to call unhoistedFunction before its assignment, it will result in an error since the variable exists but does not yet contain a function.
