@@ -1,0 +1,34 @@
+import React, { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
+
+// Create a context
+const MyContext = createContext();
+
+// Define a provider component
+const MyProvider = ({ children }) => {
+  // Define state variables
+  const [stateVariable, setStateVariable] = useState(initialValue);
+
+  // useEffect for fetching data or any other side effects
+  useEffect(() => {
+    // Fetch data or perform side effects
+  }, [dependency]);
+
+  // Return the context provider with the state and functions to be shared
+  return (
+    <MyContext.Provider value={{ stateVariable, setStateVariable }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
+
+// Define a custom hook to use the context
+export const useMyContext = () => {
+  const context = useContext(MyContext);
+  if (context === undefined) {
+    throw new Error("useMyContext must be used within a MyProvider");
+  }
+  return context;
+};
+
+export default MyProvider;
