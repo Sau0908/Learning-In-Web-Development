@@ -1,0 +1,24 @@
+const name1={
+    firstName: "saurabh",
+    lastName : "kashyap",
+}
+const name2={
+       firstName: "Sachin",
+    lastName : "Tendulkar",
+}
+const name3={
+    firstName:"Virat",
+    lastName:"Kohli",
+}
+
+function printFullName(city, state){
+    return this.firstName+ " "+ this.lastName + " from the " + city + " in " + state ;
+}
+//basically this refers kar raha hai yahaa pe name object kooo , agar yeahii pe arrow function hotaa toh this refer kar rahaa
+
+
+console.log(printFullName.apply(name1 ,[ "Jaunpur" , "UP"]));
+console.log(printFullName.call(name2, "Mumbai", "Maharastra"));
+console.log(printFullName.bind(name3));
+let fn = printFullName.bind(name3)
+console.log(fn());
